@@ -4,13 +4,7 @@
 <%= link_to "New image", new_gallery_image_path(@gallery) %>
 
 <% @gallery.images.each do |image| %>
-	<div>
-		<%= image.name %>
-	</div>
-	<div>
-		<%= image.description %>
-	</div>
-	<div>
+	<p><%= link_to image do %>
 		<img src="<%= image.url %>">
-	</div>
+	<% end %></p>
 <% end %>
