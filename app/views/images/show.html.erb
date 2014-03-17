@@ -1,13 +1,29 @@
 <h2><%= @image.name %></h2>
-<div>
-	<img src= "<%= @image.url %>">
-</div>
-<div>
-	<%= @image.description %>
-</div>
-<div>
-	<%= link_to "Edit Image", edit_image_path(@image) %>
-</div>
-<div>
-	<%= link_to "Delete", image_path(@image), method: :delete %>
-</div>
+
+<% if @image.user == current_user %>
+	<div>
+		<%= link_to "Edit Image", edit_image_path(@image) %>
+	</div>
+	<div>
+		<%= link_to "Delete", image_path(@image), method: :delete %>
+	</div>
+<% end %>
+
+<%= image_tag(@image.url, width: "400" )%>
+<p><%= @image.description %></p>
+
+<% if signed_in? %>
+	<%= form_for([@image, @comment]) do |form| %>
+		<%= form.text_area :body %>
+		<%= form.submit "Comment" %>
+	<% end %>
+<% else %>
+	<%= link_to "Sign in", sign_in_path %>
+<% end %>
+
+<% @comments.each do |comment|%>
+	<div>
+		<p><strong><%= current_user.email %></strong> at <%= comment.created_at %></p>
+		<%= comment.body %>
+	</div>
+<% end %>
