@@ -3,8 +3,6 @@
 <%= link_to "New gallery", new_gallery_path %>
 </nav>
 
-<% @galleries.each do |gallery| %>
-	<div>
-		<%= link_to gallery.name, gallery_path(gallery.id) %>
-	</div>
-<% end %>
+<ul>
+<%= render @galleries %>
+</ul>

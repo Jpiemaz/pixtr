@@ -7,8 +7,5 @@
 		<%= link_to "New image", new_gallery_image_path(@gallery) %>
 	</nav>
 <% end %>
-<% @gallery.images.each do |image| %>
-	<p><%= link_to image do %>
-		<img src="<%= image.url %>">
-	<% end %></p>
-<% end %>
+
+<%= render @gallery.images %>

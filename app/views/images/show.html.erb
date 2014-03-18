@@ -21,9 +21,4 @@
 	<%= link_to "Sign in", sign_in_path %>
 <% end %>
 
-<% @comments.each do |comment|%>
-	<div>
-		<p><strong><%= current_user.email %></strong> at <%= comment.created_at %></p>
-		<%= comment.body %>
-	</div>
-<% end %>
+<%= render @comments %>

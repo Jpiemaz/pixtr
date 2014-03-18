@@ -1,4 +1,5 @@
 <%= form_for [@image] do |form| %>
+	<%= render "form_errors", target: @image %>
 	<%= form.text_field :name %>
 	<%= form.text_field :description%>
 	<%= form.text_field :url%>
