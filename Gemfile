@@ -27,6 +27,8 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+gem 'clearance'
+
 group :development do
   gem 'pry-rails'
   gem 'better_errors'
@@ -38,7 +40,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'clearance'
+group :prouction do
+  gem "rails_12factor"
+end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
