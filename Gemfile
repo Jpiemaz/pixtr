@@ -40,7 +40,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :prouction do
+group :production do
   gem "rails_12factor"
 end
 # Use ActiveModel has_secure_password
