@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'clearance'
 
+gem 'kaminari'
+
 group :development do
   gem 'pry-rails'
   gem 'better_errors'
