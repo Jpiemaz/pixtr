@@ -1,7 +1,18 @@
 <%= form_for [@image] do |form| %>
 	<%= render "form_errors", target: @image %>
-	<%= form.text_field :name %>
-	<%= form.text_field :description%>
-	<%= form.text_field :url%>
+	<div>
+	<%= form.text_field :name, placeholder: "Name" %>
+	</div>
+	<div>
+	<%= form.text_field :description, placeholder: "Description" %>
+	</div>
+	<div>
+	<%= form.text_field :url, placeholder: "URL" %>
+	</div>
+	<div>
+	<%= form.collection_check_boxes :group_ids, @groups, :id, :name %>
+	</div>
+	<div>
 	<%= form.submit "Edit Image" %>
+	</div>
 <% end %>
