@@ -1,26 +1,34 @@
 <h2><%= @image.name %></h2>
 
 <% if @image.user == current_user %>
-	<div>
-		<%= link_to "Edit Image", edit_image_path(@image) %>
-	</div>
-	<div>
-		<%= link_to "Delete", image_path(@image), method: :delete %>
-	</div>
+  <div>
+    <%= link_to "Edit Image", edit_image_path(@image) %>
+  </div>
+  <div>
+    <%= link_to "Delete", image_path(@image), method: :delete %>
+  </div>
 <% end %>
 
 <%= image_tag(@image.url, width: "400" )%>
 <p><%= @image.description %></p>
 <p>Added by: <%= link_to @image.user.email, @image.user %></p>
-<p>Added on: <%= @image.created_at.day%>
+<p>Added on: <%= @image.created_at %>
+
+<p><%= pluralize(@image.likes.count, 'like') %></p>
+
+<% if current_user.liked? @image %>
+  <%= button_to "Unlike", unlike_image_path(@image), method: :delete %>
+<% else %>
+  <%= button_to "Like", like_image_path(@image) %>
+<% end %>
 
 <% if signed_in? %>
-	<%= form_for([@image, @comment]) do |form| %>
-		<%= form.text_area :body %>
-		<%= form.submit "Comment" %>
-	<% end %>
+  <%= form_for([@image, @comment]) do |form| %>
+    <%= form.text_area :body %>
+    <%= form.submit "Comment" %>
+  <% end %>
 <% else %>
-	<%= link_to "Sign in", sign_in_path %>
+  <%= link_to "Sign in", sign_in_path %>
 <% end %>
 
 <%= render @comments %>
