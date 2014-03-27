@@ -14,16 +14,18 @@
 <p>Added by: <%= link_to @image.user.email, @image.user %></p>
 <p>Added on: <%= @image.created_at %>
 
-<p><%= pluralize(@image.likes.count, 'like') %></p>
+<div id="image_like_count">
+  <%= pluralize(@image.likes.count, 'like') %>
+</div>
 
-<% if current_user.liked? @image %>
-  <%= button_to "Unlike", unlike_image_path(@image), method: :delete %>
-<% else %>
-  <%= button_to "Like", like_image_path(@image) %>
+<% if signed_in? %>
+  <div id= "image_like">
+    <%= render "image_like_button", image: @image %> 
+ </div>
 <% end %>
 
 <% if signed_in? %>
-  <%= form_for([@image, @comment]) do |form| %>
+  <%= form_for([@image, @comment], remote: true) do |form| %>
     <%= form.text_area :body %>
     <%= form.submit "Comment" %>
   <% end %>
@@ -31,5 +33,8 @@
   <%= link_to "Sign in", sign_in_path %>
 <% end %>
 
-<%= render @comments %>
-<%= paginate @comments %>
+<div id= "comments">
+  <%= render @comments %>
+</div>
+
+<%= link_to_next_page @comments, "Load More", remote: true, id: "next_page" %>

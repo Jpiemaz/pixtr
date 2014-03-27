@@ -3,24 +3,33 @@ Pixtr::Application.routes.draw do
 
   root to: "home#index"
 
+  resource :dashboard, only: [:show]
+
   resources :galleries do
     resources :images, only: [:new, :create]
+    member do
+      post "like" => "gallery_likes#create"
+      delete "unlike" => "gallery_likes#destroy"
+    end
   end
 
   resources :groups, only: [:index, :new, :create, :show] do
     member do
       post "join" => "group_memberships#create"
       delete "leave" => "group_memberships#destroy"
+      post "like" => "group_likes#create"
+      delete "unlike" => "group_likes#destroy"
     end
   end
 
   resources :images, except: [:index, :new, :create] do
     member do
-      post "like" => "likes#create"
-      delete "unlike" => "likes#destroy"
+      post "like" => "image_likes#create"
+      delete "unlike" => "image_likes#destroy"
     end
     resources :comments, only: [:create]
   end
+  resources :comments, only: [:destroy]
 
   resources :users, only: [:show] do
     member do

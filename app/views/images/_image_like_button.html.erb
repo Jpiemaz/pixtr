@@ -1,0 +1,6 @@
+  <% if current_user.liked? @image %>
+    <%= button_to "Unlike", unlike_image_path(@image), method: :delete, remote: true %>
+  <% else %>
+    <%= button_to "Like", like_image_path(@image), remote: true %>
+  <% end %>
+ 

@@ -1,0 +1,2 @@
+class JoinActivity < Activity
+end
