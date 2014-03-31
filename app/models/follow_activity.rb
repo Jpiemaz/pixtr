@@ -1,5 +1,5 @@
 class FollowActivity < Activity
   def email
-    subject.followed_user.email
+    actor.email
   end
 end

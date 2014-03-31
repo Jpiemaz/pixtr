@@ -1,5 +1,6 @@
 class Comment < ActiveRecord::Base
   belongs_to :user
+  belongs_to :actor, class_name: "User"
   belongs_to :image
 
   has_many :activities, as: :subject, dependent: :destroy

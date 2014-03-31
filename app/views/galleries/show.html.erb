@@ -1,14 +1,15 @@
 <h1><%= @gallery.name %></h1>
 
 <% if signed_in? %>
-  <% if current_user.liked? @gallery %>
-    <%= button_to "Unlike", unlike_gallery_path(@gallery), method: :delete %>
-  <% else %>
-    <%= button_to "Like", like_gallery_path(@gallery) %>
-  <% end %>
+  <div id= "gallery-like-button">
+    <%= render "gallery_like_button", gallery: @gallery %>
+  </div>
 <% end %>
 
-<p><%= pluralize(@gallery.likes.count, 'like') %></p>
+<div id="gallery-like-count">
+  <%= pluralize(@gallery.likes.count, 'like') %>
+</div>
+
 
 <% if @gallery.user == current_user %>
   <nav>
@@ -18,4 +19,4 @@
   </nav>
 <% end %>
 
-<%= render @gallery.images %>
+<%= render @images %>

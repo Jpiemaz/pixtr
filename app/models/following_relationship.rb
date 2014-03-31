@@ -1,6 +1,7 @@
 class FollowingRelationship < ActiveRecord::Base
   belongs_to :followed_user, class_name: "User"
   belongs_to :follower, class_name: "User"
+  belongs_to :actor, class_name: "User"
 
   has_many :activities, as: :subject, dependent: :destroy 
 

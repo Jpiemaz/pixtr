@@ -1,5 +1,8 @@
 <div>
-  <%= comment_activity.subject.user.email %>
-  commented on
-  <%= link_to comment_activity.subject.image.name, comment_activity.subject.image %>
+  <%= comment_activity.actor.email %>
+  commented
+  "<%= comment_activity.subject.body %>"
+  on
+  <%= link_to comment_activity.target.name, comment_activity.target %>
+</div>
 

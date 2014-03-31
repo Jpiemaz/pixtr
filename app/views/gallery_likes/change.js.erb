@@ -1,0 +1,3 @@
+template ="<%=j render "galleries/gallery_like_button", gallery: @gallery %>";
+$("#gallery-like-button").html(template);
+$("#gallery-like-count").html("<%= pluralize(@gallery.likes.count, 'like') %>")

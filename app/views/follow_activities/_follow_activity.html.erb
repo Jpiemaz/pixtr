@@ -1,5 +1,5 @@
 <div>
-  <%= link_to follow_activity.subject.follower.email, follow_activity.subject.follower %>
+  <%= link_to follow_activity.email, follow_activity.actor %>
   followed
-  <%= link_to follow_activity.email, follow_activity.subject.followed_user %>
+  <%= link_to follow_activity.target.email, follow_activity.target %>
 </div>

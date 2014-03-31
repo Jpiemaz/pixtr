@@ -1,5 +1,6 @@
 class GroupMembership < ActiveRecord::Base
   belongs_to :member, class_name: "User"
+  belongs_to :actor, class_name: "User"
   belongs_to :group
 
   has_many :activities, as: :subject, dependent: :destroy

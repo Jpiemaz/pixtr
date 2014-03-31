@@ -1,5 +1,5 @@
 
-ActiveRecord::Schema.define(version: 20140325184548) do
+ActiveRecord::Schema.define(version: 20140331153408) do
   enable_extension "plpgsql"
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -8,8 +8,12 @@ ActiveRecord::Schema.define(version: 20140325184548) do
     t.string   "subject_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "actor_id"
+    t.integer  "target_id"
+    t.string   "target_type"
   end
   add_index "activities", ["subject_id", "subject_type"], name: "index_activities_on_subject_id_and_subject_type", using: :btree
+  add_index "activities", ["target_id", "target_type"], name: "index_activities_on_target_id_and_target_type", using: :btree
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
   create_table "comments", force: true do |t|
     t.integer  "user_id"
