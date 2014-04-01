@@ -41,9 +41,10 @@ class User < ActiveRecord::Base
       end
     end
   end
+  handle_asynchronously :notify_followers
 
   def follow(user)
-    follow = followed_user_relationships.create(followed_user: user) 
+    follow = followed_user_relationships.create(followed_user: user)
     notify_followers(follow, user, "FollowActivity")
   end
 

@@ -10,6 +10,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'clearance'
 gem 'kaminari'
+gem 'delayed_job_active_record'
+gem 'daemons'
 
 group :development do
   gem 'pry-rails'
