@@ -21,6 +21,10 @@
       <li><%= link_to "Groups", groups_path %></li>
     </ul>
   </nav>
+  <nav>
+    <% if current_user.customer_id %>
+      You're the best!
+    <% end %>
   <% end %>
   
   <% if signed_in? %>
