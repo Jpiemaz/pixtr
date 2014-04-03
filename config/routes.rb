@@ -3,8 +3,11 @@ Pixtr::Application.routes.draw do
 
   root to: "home#index"
 
-  resource :dashboard, only: [:show]
+  resources :tags, only: [:show]
 
+
+  resource :dashboard, only: [:show]
+  resource :search, only: [:show]
   resources :galleries do
     resources :images, only: [:new, :create]
     member do

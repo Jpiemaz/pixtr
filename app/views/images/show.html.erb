@@ -14,13 +14,20 @@
 <p>Added by: <%= link_to @image.user.email, @image.user %></p>
 <p>Added on: <%= @image.created_at %>
 
+<div>
+  <% @tags.each do |tag| %>
+    <%= link_to tag.name, tag %>
+  <% end %>
+</div>
+
+
 <div id="image_like_count">
   <%= pluralize(@image.likes.count, 'like') %>
 </div>
 
 <% if signed_in? %>
   <div id= "image_like">
-    <%= render "image_like_button", image: @image %> 
+    <%= render "image_like_button", image: @image %>
   </div>
 <% end %>
 

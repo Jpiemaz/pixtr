@@ -13,6 +13,9 @@
   <%= form.collection_check_boxes :group_ids, @groups, :id, :name %>
   </div>
   <div>
+  <%= form.text_field :tag_list, placeholder: "Tag" %>
+  </div>
+  <div>
   <%= form.submit "Edit Image" %>
   </div>
 <% end %>

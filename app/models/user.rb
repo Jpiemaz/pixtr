@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   include Clearance::User
 
+
   has_many :activities
   has_many :galleries, dependent: :destroy
   has_many :liked_galleries, through: :galleries, source: :likable, source_type: 'Gallery'
