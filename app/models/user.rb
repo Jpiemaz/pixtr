@@ -44,6 +44,10 @@ class User < ActiveRecord::Base
   end
   handle_asynchronously :notify_followers
 
+  def upgraded?
+    customer_id.present?
+  end
+
   def follow(user)
     follow = followed_user_relationships.create(followed_user: user)
     notify_followers(follow, user, "FollowActivity")

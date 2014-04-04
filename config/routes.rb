@@ -5,6 +5,8 @@ Pixtr::Application.routes.draw do
 
   resources :tags, only: [:show]
 
+  resource :account, only: [:show]
+  resources :charges, only: [:create]
 
   resource :dashboard, only: [:show]
   resource :search, only: [:show]

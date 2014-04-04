@@ -12,11 +12,13 @@ gem 'clearance'
 gem 'kaminari'
 gem 'delayed_job_active_record'
 gem 'daemons'
+gem 'stripe', github: 'stripe/stripe-ruby'
 
 group :development do
   gem 'pry-rails'
   gem 'quiet_assets'
   gem 'bullet'
+  gem 'dotenv-rails'
   # gem 'letter_opener'
   # gem 'better_errors'
   # gem 'binding_of_caller'
