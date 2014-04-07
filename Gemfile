@@ -13,6 +13,9 @@ gem 'kaminari'
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'stripe', github: 'stripe/stripe-ruby'
+gem 'bourbon'
+gem 'bitters'
+gem 'neat'
 
 group :development do
   gem 'pry-rails'

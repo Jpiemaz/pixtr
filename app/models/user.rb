@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   include Clearance::User
 
-
   has_many :activities
+
   has_many :galleries, dependent: :destroy
   has_many :liked_galleries, through: :galleries, source: :likable, source_type: 'Gallery'
   has_many :images, through: :galleries
@@ -30,16 +30,14 @@ class User < ActiveRecord::Base
     through: :follower_relationships
 
   def notify_followers(subject, target, type)
-    if subject.persisted?
-      followers.each do |follower|
-        follower.activities.create(
-          subject: subject,
-          type: type,
-          actor: self,
-          target: target
-        )
+    followers.each do |follower|
+      follower.activities.create(
+        subject: subject,
+        type: type,
+        actor: self,
+        target: target
+      )
       # UserMailer.action_email(follower).deliver
-      end
     end
   end
   handle_asynchronously :notify_followers

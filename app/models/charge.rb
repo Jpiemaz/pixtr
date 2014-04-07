@@ -1,8 +1,8 @@
-class Charge 
+class Charge
   AMOUNT = 2000
   DESCRIPTION = 'Pixtr Account Upgrade'
 
-  def initializer(user, token)
+  def initialize(user, token)
     @user = user
     @token = token
   end
@@ -12,7 +12,7 @@ class Charge
     create_charge customer
     user.update(customer_id: customer.id)
   end
-  
+
   private
 
   attr_reader :user, :token
@@ -23,7 +23,7 @@ class Charge
       card: token
     )
   end
-  
+
   def create_charge(customer)
     Stripe::Charge.create(
       customer: customer.id,

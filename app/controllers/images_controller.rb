@@ -1,4 +1,6 @@
 class ImagesController < ApplicationController
+  respond_to :html
+
   def new
     @gallery = current_user.galleries.find(params[:gallery_id])
     @image = Image.new
@@ -7,17 +9,14 @@ class ImagesController < ApplicationController
   def create
     @gallery = current_user.galleries.find(params[:gallery_id])
     @image = @gallery.images.new(image_params)
-    if @image.save
-      redirect_to @gallery
-    else
-      render :new
-    end
+    @image.save
+    respond_with @image, location: @gallery
   end
 
   def show
     @image = Image.find(params[:id])
     @comment = Comment.new
-    @comments = @image.comments.recent.page(params[:page]).per(2).includes(:user)
+    @comments = @image.comments.paginated(params[:page])
     @tags = @image.tags
   end
 
@@ -28,12 +27,9 @@ class ImagesController < ApplicationController
 
   def update
     @image = current_user.images.find(params[:id])
-    if @image.update(image_params)
-      redirect_to @image
-    else
-      @groups =current_user.groups
-      render :edit
-    end
+    @image.update(image_params)
+    @groups =current_user.groups
+    respond_with @image
   end
 
   def destroy
