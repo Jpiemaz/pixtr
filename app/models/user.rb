@@ -47,8 +47,7 @@ class User < ActiveRecord::Base
   end
 
   def follow(user)
-    follow = followed_user_relationships.create(followed_user: user)
-    notify_followers(follow, user, "FollowActivity")
+    followed_user_relationships.create(followed_user: user)
   end
 
   def following?(user)
@@ -60,8 +59,7 @@ class User < ActiveRecord::Base
   end
 
   def join(group)
-    group_membership = group_memberships.create(group: group)
-    notify_followers(group_membership, group, "GroupMembershipActivity")
+    group_memberships.create(group: group)
   end
 
   def leave(group)
